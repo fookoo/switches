@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="e30.switches">
+<head>
+    <meta charset="UTF-8">
+    <title>Switches</title>
+    <link rel="stylesheet" href="style/app.css">
+    <meta name="viewport" content="width=device-width">
+</head>
+    <body>
+        <div layout="column" layout-fill>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <span>Switches</span>
+                    <span flex></span>
+                    <md-button>
+                        <md-icon md-font-icon="menu">menu</md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-content flex>
+                <ui-view></ui-view>
+            </md-content>
+        </div>
+        <script type="application/javascript" src="js/app.js.gz"></script>
+        <script type="application/javascript" src="js/cordova.js"></script>
+    </body>
+</html>

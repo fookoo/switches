@@ -1,0 +1,5 @@
+<md-list-item>
+    <md-icon md-font-icon="power">power</md-icon>
+    <p>Switch #{{ SwitchCtrl.device.id }}</p>
+    <md-switch class="md-secondary" ng-model="SwitchCtrl.device.state" ng-change="SwitchCtrl.change($event)"></md-switch>
+</md-list-item>
