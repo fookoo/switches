@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Lights",
+    "state": true,
+    "switches": [
+      {
+        "id": 1,
+        "on": true,
+        "off": false
+      },
+      {
+        "id": 2,
+        "on": true,
+        "off": false
+      },
+      {
+        "id": 3,
+        "on": false,
+        "off": true
+      }
+    ],
+    availableSwitches
+    ":[{"
+    id
+    ":0},{"
+    id
+    ":4},{"
+    id
+    ":5},{"
+    id
+    ":6},{"
+    id
+    ":7}],"
+    showDetails
+    ":true}]

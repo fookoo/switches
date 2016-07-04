@@ -1,0 +1,27 @@
+<md-dialog aria-label="Add new section"  ng-cloak>
+    <div flex layout="column" layout-fill layout-padding>
+        <div flex layout="row">
+            <md-input-container flex>
+                <label>
+                    Section name
+                </label>
+                <input ng-model="section.name">
+            </md-input-container>
+        </div>
+        <div flex layout="row">
+            <div flex="50">
+                <md-input-container>
+                    <label>Switch</label>
+                    <md-select ng-model="tmp">
+                        <md-option ng-repeat="switch in Switches.getSwitches()">{{ switch.id }}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div flex="50">
+                <md-button>
+                    add
+                </md-button>
+            </div>
+        </div>
+    </div>
+</md-dialog>

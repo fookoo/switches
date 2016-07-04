@@ -116,12 +116,11 @@ module.exports = function (grunt) {
         'http-server': {
             dev: {
                 root: 'www/',
-                host: '192.168.1.103',
                 port: 8282,
                 showDir: true,
                 autoIndex: true,
                 ext: "html",
-                runInBackground: false
+                runInBackground: true
             }
         }
     });

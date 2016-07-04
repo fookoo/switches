@@ -8,20 +8,37 @@
 </head>
     <body>
         <div layout="column" layout-fill>
-            <md-toolbar>
+            <md-toolbar ng-cloak>
                 <div class="md-toolbar-tools">
-                    <span>Switches</span>
+                    <span>Automation PRO</span>
                     <span flex></span>
-                    <md-button>
-                        <md-icon md-font-icon="menu">menu</md-icon>
-                    </md-button>
+                    <md-menu ng-cloak>
+                        <md-button ng-click="$mdOpenMenu($event)">
+                            <md-icon md-menu-origin md-font-icon="menu">menu</md-icon>
+                        </md-button>
+                        <md-menu-content width="4">
+                            <md-menu-item>
+                                <md-button ui-sref="main.section">
+                                    <md-icon md-font-icon="assignment" md-menu-align-target>assignment</md-icon>
+                                    Sections
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item>
+                                <md-button ui-sref="main.switches">
+                                    <md-icon md-font-icon="power">power</md-icon>
+                                    Switches
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
                 </div>
             </md-toolbar>
+
             <md-content flex>
                 <ui-view></ui-view>
             </md-content>
         </div>
-        <script type="application/javascript" src="js/app.js.gz"></script>
-        <script type="application/javascript" src="js/cordova.js"></script>
+        <script type="application/javascript" src="js/app.js"></script>
+        <script type="application/javascript" src="cordova.js"></script>
     </body>
 </html>

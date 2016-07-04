@@ -1,20 +1,14 @@
 export class SwitchController {
-    constructor($http) {
+    constructor(Switches) {
         'ngInject';
         
-        this.$http = $http;
+        this.Switches = Switches;
     }
 
     change() {
-        this.$http({
-            method: 'POST',
-            url: `http://fuku.noip.me:8080/relay/${this.device.id}`,
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            data: `value=${this.device.state ? 1 : 0}`
-        });
+        this.Switches
+            .setSwitch(this.device.id, this.device.state);
     }
 }
 
-SwitchController.$inject = ['$http'];
+SwitchController.$inject = ['Switches'];

@@ -1,0 +1,20 @@
+section-list {
+
+  div[flex] {
+    line-height: 62px;
+  }
+
+  md-icon {
+    margin-right: 16px;
+  }
+
+  subsection {
+    background: #f7f7f7;
+    header {
+      div[flex="15"] {
+        text-align: center;
+      }
+    }
+  }
+
+}

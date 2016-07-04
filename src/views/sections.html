@@ -1,0 +1,45 @@
+<md-fab-speed-dial>
+    <md-fab-trigger>
+        <md-button ng-click="SectionListCtrl.addNewSection()" aria-label="Add new section" class="md-fab md-warn">
+            <md-icon md-font-icon="add">add</md-icon>
+        </md-button>
+    </md-fab-trigger>
+</md-fab-speed-dial>
+
+<div flex layout="column" layout-fill layout-padding>
+    <div flex>
+        <section-list>
+            <section-item layout="column" ng-repeat="section in SectionListCtrl.sections track by $index">
+                <div layout="row">
+                    <div class="title" flex="90" ng-click="section.showDetails = !section.showDetails">
+                        <md-icon md-font-icon="assignment">assignment</md-icon>
+                        {{ section.name }}
+                    </div>
+                    <div flex="10">
+                        <md-switch class="md-secondary" ng-model="section.state" aria-label="Toggle section" ng-change="SectionListCtrl.toggle(section)"></md-switch>
+                    </div>
+                </div>
+
+                <subsection ng-show="section.showDetails">
+                    <list layout="column">
+                        <item flex layout="row" ng-repeat="switch in section.switches track by $index">
+                            <div flex="70"><md-icon md-font-icon="power">power</md-icon>Switch #{{ switch.id }}</div>
+                            <div flex="15"><md-switch class="md-secondary" aria-label="OFF state" ng-model="switch.off" ng-change="SectionListCtrl.sync()"></md-switch></div>
+                            <div flex="15"><md-switch class="md-secondary" aria-label="ON state" ng-model="switch.on" ng-change="SectionListCtrl.sync()"></md-switch></div>
+                        </item>
+                        <item>
+                            <md-input-container>
+                                <label>Add switch</label>
+                                <md-select ng-model="selectedSwitch" ng-change="SectionListCtrl.addNewSwitch(section, selectedSwitch)">
+                                    <md-option ng-repeat="switch in section.availableSwitches track by $index" ng-value="switch">
+                                        <md-icon md-font-icon="power">power</md-icon>Switch {{ switch.id }}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </item>
+                    </list>
+                </subsection>
+            </section-item>
+        </section-list>
+    </div>
+</div>
