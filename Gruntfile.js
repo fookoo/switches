@@ -110,7 +110,14 @@ module.exports = function (grunt) {
                 'www/*'
             ],
             dev: [
-                'www/js/app.es5.js'
+                'www/js/app.es5.js',
+                'www/dialog',
+                'www/main.html',
+                'www/sections.html',
+                'www/switches.html',
+                'www/style/app.compiled.css',
+                'www/js/templates.js'
+                
             ]
         },
         'http-server': {
