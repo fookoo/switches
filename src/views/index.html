@@ -10,11 +10,9 @@
         <div layout="column" layout-fill>
             <md-toolbar ng-cloak>
                 <div class="md-toolbar-tools">
-                    <span>Automation PRO</span>
-                    <span flex></span>
-                    <md-menu ng-cloak>
-                        <md-button ng-click="$mdOpenMenu($event)">
-                            <md-icon md-menu-origin md-font-icon="menu">menu</md-icon>
+                    <md-menu>
+                        <md-button style="min-width: auto" ng-click="$mdOpenMenu($event)">
+                            <md-icon md-font-icon="menu">menu</md-icon>
                         </md-button>
                         <md-menu-content width="4">
                             <md-menu-item>
@@ -31,6 +29,9 @@
                             </md-menu-item>
                         </md-menu-content>
                     </md-menu>
+                    <span>Automation PRO</span>
+                    <span flex></span>
+
                 </div>
             </md-toolbar>
 

@@ -4,9 +4,11 @@ import {SwitchDirective} from './directives/switch.directive'
 
 import {SwitchListController} from './controllers/switchList.controller'
 import {SectionListController} from './controllers/sectionList.controller'
+import {NewSectionController} from './controllers/newSection.controller'
 
 import {SwitchesService} from './services/switches'
 import {SectionsService} from './services/sections'
+import {CommonService} from './services/common.service'
 
 angular
     .module('e30.switches', [
@@ -18,10 +20,12 @@ angular
     ])
     .directive('switch', () => new SwitchDirective)
     
+    .controller('NewSectionController', NewSectionController)
     .controller('SwitchListController', SwitchListController)
     .controller('SectionListController', SectionListController)
     
     .service('Switches', SwitchesService)
     .service('Sections', SectionsService)
+    .service('Common', CommonService)
 
     .config(routerConfig);

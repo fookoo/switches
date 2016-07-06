@@ -2,3 +2,10 @@
 
 @import "components/fab";
 @import "components/section-list";
+
+
+* {
+  &:focus {
+    outline: none;
+  }
+}

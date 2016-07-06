@@ -56,6 +56,17 @@ export class SwitchesService {
             data: switchesArray
         });
     }
+    
+    pulse(switchesArray) {
+        return this.$http({
+            method: 'POST',
+            url: `${this.backendUrl}/pulses`,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: switchesArray
+        });  
+    }
 }
 
 SwitchesService.$inject = ['$q', '$http'];
