@@ -1,7 +1,9 @@
 export class SectionListController {
-    constructor($scope, $mdDialog, Switches, Sections) {
+    constructor($scope, $mdMedia, $mdDialog, Switches, Sections) {
         'ngInject';
+
         this.$scope = $scope;
+        this.$mdMedia = $mdMedia;
         this.$mdDialog = $mdDialog;
         this.Switches = Switches;
         this.Sections = Sections;
@@ -19,6 +21,33 @@ export class SectionListController {
         this.sections = this.Sections.getSections();
     }
 
+    changeSwitchType(type, section, selectedSwitch) {
+        console.info (arguments);
+        this.sections.forEach((sectionItem) => {
+            console.info('ddd', sectionItem);
+            if (sectionItem.id == section.id) {
+                console.info('ccc', sectionItem);
+                sectionItem.switches.forEach((item) => {
+                    console.info('bbb', item);
+                    if (item.id == selectedSwitch.id) {
+                        console.info('aaaa', type);
+                        switch (type) {
+                            case 'pulse':
+                                item.icon = 'flare';
+                                break;
+                            case 'switch':
+                                item.icon = 'swap_horiz';
+                                break;
+                        }
+                        item.type = type;
+                    }
+                })
+            }
+        });
+
+        this.sync();
+    }
+
     /**
      * Turn on/off section
      * @param section
@@ -28,6 +57,7 @@ export class SectionListController {
         section.switches.forEach((sw) => {
              switchesArray.push({
                  id: parseInt(sw.id),
+                 type: sw.type,
                  state: parseInt(section.state ? (sw.on ? 1 : 0) : (sw.off ? 1 : 0))
              });
         });
@@ -39,10 +69,41 @@ export class SectionListController {
     }
 
     addNewSection() {
-        this.$mdDialog.show({
-            templateUrl: 'views/dialog/new.section.html',
-            controller: 'NewSectionController as ctrl'
-        });
+        let name = this.$mdDialog.prompt()
+            .title('New section')
+            .textContent('Section name')
+            .placeholder('Name')
+            .ariaLabel('Name')
+            .ok('Add')
+            .cancel('Cancel');
+
+        this.$mdDialog
+            .show(name)
+            .then((newSectionName) => {
+                this.Sections
+                    .addSection(newSectionName)
+                    .then((sections) => {
+                        this.sections = sections
+                    });
+            });
+    }
+
+    changeName(section) {
+        let name = this.$mdDialog.prompt()
+            .title('Rename')
+            .textContent('Change section name')
+            .placeholder('Name')
+            .ariaLabel('Name')
+            .initialValue(section.name)
+            .ok('Okay!')
+            .cancel('Cancel');
+
+        this.$mdDialog
+            .show(name)
+            .then((newName) => {
+                section.name = newName;
+                this.sync();
+            });
     }
 
     deleteSection(selectedSection) {
@@ -59,10 +120,6 @@ export class SectionListController {
                 });
                 this.sync();
             });
-    }
-
-    openSwitchMenu($mdOpenMenu, ev) {
-        $mdOpenMenu(ev);
     }
 
     deleteSwitch(selectedSwitch, selectedSection) {
@@ -87,4 +144,4 @@ export class SectionListController {
     }
 }
 
-SectionListController.$inject = ['$scope', '$mdDialog', 'Switches', 'Sections'];
+SectionListController.$inject = ['$scope', '$mdMedia', '$mdDialog', 'Switches', 'Sections'];

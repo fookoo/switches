@@ -9,7 +9,9 @@ export class SwitchDirective {
         this.bindToController = true;
 
         this.scope = {
-            "device": "=device"
+            "device": "=device",
+            "parent": "=parent",
+            "section": "=section"
         };
     }
 }

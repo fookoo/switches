@@ -1,18 +1,20 @@
-<md-fab-speed-dial>
-    <md-fab-trigger>
-        <md-button ng-click="SectionListCtrl.addNewSection()" aria-label="Add new section" class="md-fab md-warn">
-            <md-icon md-font-icon="add">add</md-icon>
-        </md-button>
-    </md-fab-trigger>
-</md-fab-speed-dial>
-
-<div flex layout="column" layout-fill layout-padding>
+<item flex layout="column" layout-fill layout-padding>
     <item flex>
         <section-list>
             <section-item layout="column" ng-repeat="section in SectionListCtrl.sections">
                 <div layout="row">
                     <div class="title" flex="90" ng-click="section.showDetails = !section.showDetails; SectionListCtrl.sync();">
-                        <md-icon md-font-icon="assignment">assignment</md-icon>
+                        <md-menu>
+                            <md-icon md-menu-origin ng-click="$mdOpenMenu($event);" md-font-icon="assignment">assignment</md-icon>
+                            <md-menu-content>
+                                <md-menu-item>
+                                    <md-button ng-click="SectionListCtrl.changeName(section)">
+                                        <md-icon md-font-icon="font_download" md-menu-align-target>font_download</md-icon>
+                                        Rename
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
                         {{ section.name }}
                     </div>
                     <div flex="10">
@@ -22,30 +24,16 @@
 
                 <subsection ng-show="section.showDetails">
                     <list layout="column">
-                        <item flex layout="row" ng-repeat="switch in section.switches track by $index">
-                            <div flex="70">
-                                <md-menu>
-                                    <md-icon md-menu-origin ng-click="$mdOpenMenu($event);" md-font-icon="power">power</md-icon>
-                                    <md-menu-content>
-                                        <md-menu-item>
-                                            <md-button ng-click="SectionListCtrl.deleteSwitch(switch, section)">
-                                                <md-icon md-font-icon="delete" md-menu-align-target>delete</md-icon>
-                                                Delete
-                                            </md-button>
-                                        </md-menu-item>
-                                    </md-menu-content>
-                                </md-menu>
-                                Switch #{{ switch.id }}
-                            </div>
-                            <div flex="15"><md-switch class="md-secondary" aria-label="OFF state" ng-model="switch.off" ng-change="SectionListCtrl.sync()"></md-switch></div>
-                            <div flex="15"><md-switch class="md-secondary" aria-label="ON state" ng-model="switch.on" ng-change="SectionListCtrl.sync()"></md-switch></div>
-                        </item>
+                        <switch ng-repeat="switch in section.switches track by $index"
+                                parent="SectionListCtrl"
+                                device="switch"
+                                section="section"></switch>
                         <item flex layout-padding>
                             <md-input-container class="md-block">
                                     <label>Add switch</label>
                                     <md-select ng-model="selectedSwitch" ng-change="SectionListCtrl.addNewSwitch(section, selectedSwitch)">
                                         <md-option ng-repeat="switch in section.availableSwitches | orderBy: 'id' track by $index" ng-value="switch">
-                                            <md-icon md-font-icon="power">power</md-icon>Switch {{ switch.id }}
+                                            <md-icon md-font-icon="power">power</md-icon>({{ switch.id }}) {{ switch.name }}
                                         </md-option>
                                     </md-select>
                                 </md-input-container>
@@ -61,5 +49,12 @@
                 </subsection>
             </section-item>
         </section-list>
-    </div>
+    </item>
+    <item flex>
+        <div layout="row" layout-align="center center">
+            <div>
+                <md-button class="md-raised md-accent" ng-click="SectionListCtrl.addNewSection()" aria-label="Add new section">Add new section</md-button>
+            </div>
+        </div>
+    </item>
 </div>

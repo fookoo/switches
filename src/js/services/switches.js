@@ -19,9 +19,12 @@ export class SwitchesService {
             .get(`${this.backendUrl}/relays`)
             .then((relays) => {
                 relays.data.forEach((switchElement) => {
-                    switchElement.state = switchElement.state == 1;
+                    switchElement.icon = 'swap_horiz';
+                    switchElement.name = this.getNameById(switchElement.id);
+                    switchElement.type = 'direct';
+                    switchElement.state = switchElement.state === 1;
                 });
-
+                console.info (relays.data);
                 p.resolve(relays.data);
 
             }, p.reject);
@@ -44,6 +47,10 @@ export class SwitchesService {
             },
             data: `value=${value ? 1 : 0}`
         });
+    }
+
+    getNameById(id) {
+        return window.localStorage.getItem(`e30.switches.names.${id}`) || 'Switch';
     }
     
     setSwitches(switchesArray) {

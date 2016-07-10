@@ -123,6 +123,7 @@ module.exports = function (grunt) {
         'http-server': {
             dev: {
                 root: 'www/',
+                // host: '192.168.1.105',
                 port: 8282,
                 showDir: true,
                 autoIndex: true,
@@ -131,6 +132,7 @@ module.exports = function (grunt) {
             }
         }
     });
+    
 
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');

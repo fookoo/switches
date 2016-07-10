@@ -42,16 +42,26 @@ export class SectionsService {
     getSections() {
         this.sections = angular.fromJson(window.localStorage.getItem(this.key) || []);
 
+        this.sections.forEach((section) => {
+            section.switches.forEach((switchItem) => {
+                switchItem.name = this.Switches.getNameById(switchItem.id);
+            });
+
+            section.availableSwitches.forEach((avaSwitch) => {
+                avaSwitch.name = this.Switches.getNameById(avaSwitch.id);
+            });
+        });
+        
         return this.sections;
     }
 
     addSwitch(selectedSection, selectedSwitch) {
         this.sections.forEach((section) => {
             if (section.id === selectedSection.id) {
+                selectedSwitch.type = 'switch';
                 selectedSwitch.on = false;
                 selectedSwitch.off = false;
                 section.switches.push(selectedSwitch);
-                section.availableSwitches = section.availableSwitches.filter((switchItem) => switchItem.id !== selectedSwitch.id);
             }
         });
 
@@ -60,8 +70,7 @@ export class SectionsService {
 
     removeSwitch(selectedSection, selectedSwitch) {
         selectedSection.switches = selectedSection.switches.filter((item) => item.id !== selectedSwitch.id);
-        selectedSection.availableSwitches.push(selectedSwitch);
-        
+
         this.sync();
     }
     

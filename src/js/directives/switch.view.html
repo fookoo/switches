@@ -1,5 +1,51 @@
-<md-list-item>
-    <md-icon md-font-icon="power">power</md-icon>
-    <p>Switch #{{ SwitchCtrl.device.id }}</p>
-    <md-switch class="md-secondary" ng-model="SwitchCtrl.device.state" ng-change="SwitchCtrl.change($event)"></md-switch>
-</md-list-item>
+<item layout="row">
+    <md-menu>
+        <md-icon md-menu-origin ng-click="$mdOpenMenu($event);" md-font-icon="{{ SwitchCtrl.device.icon }}">{{ SwitchCtrl.device.icon}}</md-icon>
+        <md-menu-content>
+            <md-menu-item>
+                <md-button ng-click="SwitchCtrl.changeName()">
+                    <md-icon md-font-icon="font_download" md-menu-align-target>font_download</md-icon>
+                    Rename
+                </md-button>
+            </md-menu-item>
+            <md-menu-divider ng-show="SwitchCtrl.device.type != 'direct'"></md-menu-divider>
+            <div ng-show="SwitchCtrl.device.type != 'direct'">
+                <md-menu-item ng-show="SwitchCtrl.device.type != 'pulse'">
+                    <md-button ng-click="SwitchCtrl.parent.changeSwitchType('pulse', SwitchCtrl.section, SwitchCtrl.device)">
+                        <md-icon md-font-icon="flare" md-menu-align-target>flare</md-icon>
+                        Change to pulse
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item ng-show="SwitchCtrl.device.type != 'switch'">
+                    <md-button ng-click="SwitchCtrl.parent.changeSwitchType('switch', SwitchCtrl.section, SwitchCtrl.device)">
+                        <md-icon md-font-icon="swap_horiz" md-menu-align-target>swap_horiz</md-icon>
+                        Change to switch
+                    </md-button>
+                </md-menu-item>
+            </div>
+            <md-menu-divider ng-show="SwitchCtrl.device.type != 'direct'"></md-menu-divider>
+            <md-menu-item ng-show="SwitchCtrl.device.type != 'direct'">
+                <md-button ng-click="SwitchCtrl.parent.deleteSwitch(SwitchCtrl.device, SwitchCtrl.section)">
+                    <md-icon md-font-icon="delete" md-menu-align-target>delete</md-icon>
+                    Delete
+                </md-button>
+            </md-menu-item>
+        </md-menu-content>
+    </md-menu>
+    <span class="title" flex>({{ SwitchCtrl.device.id }}) {{ SwitchCtrl.device.name }}</span>
+    <div flex>
+        <div layout="row" ng-show="SwitchCtrl.device.type != 'direct'">
+            <div flex="50">
+                <md-switch class="md-secondary" aria-label="OFF state" ng-model="SwitchCtrl.device.off" ng-change="SwitchCtrl.parent.sync()"></md-switch>
+            </div>
+            <div flex="50">
+                <md-switch class="md-secondary" aria-label="ON state" ng-model="SwitchCtrl.device.on" ng-change="SwitchCtrl.parent.sync()"></md-switch>
+            </div>
+        </div>
+        <div layout="row" layout-align="end center" ng-show="SwitchCtrl.device.type == 'direct'">
+            <div>
+                <md-switch class="md-secondary" ng-model="SwitchCtrl.device.state" ng-change="SwitchCtrl.change($event)"></md-switch>
+            </div>
+        </div>
+    </div>
+</item>

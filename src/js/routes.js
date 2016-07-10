@@ -2,22 +2,18 @@ export function routerConfig($stateProvider, $urlRouterProvider) {
     'ngInject';
 
     $stateProvider
-        .state('main', {
-            url: '/',
-            templateUrl: 'views/main.html'
-        })
-        .state('main.section', {
+        .state('sections', {
             url: '/sections',
             templateUrl: 'views/sections.html',
             controller: 'SectionListController as SectionListCtrl'
 
 
         })
-        .state('main.switches', {
+        .state('switches', {
             url: '/switches',
             templateUrl: 'views/switches.html',
             controller: 'SwitchListController as SwitchListCtrl'
         });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/sections');
 }
