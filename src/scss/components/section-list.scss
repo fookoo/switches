@@ -1,6 +1,8 @@
 section-list {
   display: block;
 
+  padding-top: 0 !important;
+
   div[flex] {
     line-height: 62px;
   }
@@ -19,3 +21,5 @@ section-list {
   }
 
 }
+
+

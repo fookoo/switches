@@ -112,7 +112,6 @@ module.exports = function (grunt) {
             dev: [
                 'www/js/app.es5.js',
                 'www/dialog',
-                'www/main.html',
                 'www/sections.html',
                 'www/switches.html',
                 'www/style/app.compiled.css',

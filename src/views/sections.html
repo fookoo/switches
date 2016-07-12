@@ -1,60 +1,59 @@
-<item flex layout="column" layout-fill layout-padding>
-    <item flex>
-        <section-list>
-            <section-item layout="column" ng-repeat="section in SectionListCtrl.sections">
-                <div layout="row">
-                    <div class="title" flex="90" ng-click="section.showDetails = !section.showDetails; SectionListCtrl.sync();">
-                        <md-menu>
-                            <md-icon md-menu-origin ng-click="$mdOpenMenu($event);" md-font-icon="assignment">assignment</md-icon>
-                            <md-menu-content>
-                                <md-menu-item>
-                                    <md-button ng-click="SectionListCtrl.changeName(section)">
-                                        <md-icon md-font-icon="font_download" md-menu-align-target>font_download</md-icon>
-                                        Rename
-                                    </md-button>
-                                </md-menu-item>
-                            </md-menu-content>
-                        </md-menu>
-                        {{ section.name }}
-                    </div>
-                    <div flex="10">
-                        <md-switch class="md-secondary" ng-model="section.state" aria-label="Toggle section" ng-change="SectionListCtrl.toggle(section)"></md-switch>
-                    </div>
-                </div>
-
-                <subsection ng-show="section.showDetails">
-                    <list layout="column">
-                        <switch ng-repeat="switch in section.switches track by $index"
-                                parent="SectionListCtrl"
-                                device="switch"
-                                section="section"></switch>
-                        <item flex layout-padding>
-                            <md-input-container class="md-block">
-                                    <label>Add switch</label>
-                                    <md-select ng-model="selectedSwitch" ng-change="SectionListCtrl.addNewSwitch(section, selectedSwitch)">
-                                        <md-option ng-repeat="switch in section.availableSwitches | orderBy: 'id' track by $index" ng-value="switch">
-                                            <md-icon md-font-icon="power">power</md-icon>({{ switch.id }}) {{ switch.name }}
-                                        </md-option>
-                                    </md-select>
-                                </md-input-container>
-                        </item>
-                        <item flex layout-padding layout="row" layout-align="end center">
-                            <div>
-                                <md-button ng-click="SectionListCtrl.deleteSection(section)" class="md-warn md-raised">
-                                    Delete
+<div layout="row" layout-padding>
+    <section-list flex>
+        <section-item layout="column" ng-repeat="section in SectionListCtrl.sections">
+            <div layout="row">
+                <div class="title" flex="90" ng-click="section.showDetails = !section.showDetails; SectionListCtrl.sync();">
+                    <md-menu>
+                        <md-icon md-menu-origin ng-click="$mdOpenMenu($event);" md-font-icon="assignment">assignment</md-icon>
+                        <md-menu-content>
+                            <md-menu-item>
+                                <md-button ng-click="SectionListCtrl.changeName(section)">
+                                    <md-icon md-font-icon="font_download" md-menu-align-target>font_download</md-icon>
+                                    Rename
                                 </md-button>
-                            </div>
-                        </item>
-                    </list>
-                </subsection>
-            </section-item>
-        </section-list>
-    </item>
-    <item flex>
-        <div layout="row" layout-align="center center">
-            <div>
-                <md-button class="md-raised md-accent" ng-click="SectionListCtrl.addNewSection()" aria-label="Add new section">Add new section</md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                    {{ section.name }}
+                </div>
+                <div flex="10">
+                    <md-switch class="md-secondary" ng-model="section.state" aria-label="Toggle section" ng-change="SectionListCtrl.toggle(section)"></md-switch>
+                </div>
             </div>
-        </div>
-    </item>
+
+            <subsection ng-show="section.showDetails">
+                <list layout="column">
+                    <switch ng-repeat="switch in section.switches track by $index"
+                            parent="SectionListCtrl"
+                            device="switch"
+                            section="section"></switch>
+                    <item flex layout-padding>
+                        <md-input-container class="md-block">
+                            <label>Add switch</label>
+                            <md-select ng-model="selectedSwitch" ng-change="SectionListCtrl.addNewSwitch(section, selectedSwitch)">
+                                <md-option ng-repeat="switch in section.availableSwitches | orderBy: 'id' track by $index" ng-value="switch">
+                                    <md-icon md-font-icon="power">power</md-icon>({{ switch.id }}) {{ switch.name }}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </item>
+                    <item flex layout-padding layout="row" layout-align="end center">
+                        <div>
+                            <md-button ng-click="SectionListCtrl.deleteSection(section)" class="md-warn md-raised">
+                                Delete
+                            </md-button>
+                        </div>
+                    </item>
+                </list>
+            </subsection>
+        </section-item>
+    </section-list>
+</div>
+
+
+
+<div style="display:none;" layout="row" layout-align="center center">
+    <div>
+        <md-button class="md-raised md-primary" ng-click="SectionListCtrl.addNewSection()" aria-label="Add new section">Add new section</md-button>
+    </div>
 </div>
