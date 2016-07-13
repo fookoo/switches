@@ -26,7 +26,7 @@ export class SwitchController {
     
     change() {
         this.Switches
-            .setSwitch(this.device.id, this.device.state);
+            .setSwitch(this.device.deviceId, this.device.state);
     }
 }
 

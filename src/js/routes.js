@@ -6,8 +6,6 @@ export function routerConfig($stateProvider, $urlRouterProvider) {
             url: '/sections',
             templateUrl: 'views/sections.html',
             controller: 'SectionListController as SectionListCtrl'
-
-
         })
         .state('switches', {
             url: '/switches',

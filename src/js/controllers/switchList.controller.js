@@ -14,6 +14,7 @@ export class SwitchListController {
 
     getList() {
         this.loader = true;
+
         this.Switches
             .getSwitches()
             .then((switches) => {
@@ -32,4 +33,4 @@ export class SwitchListController {
     }
 }
 
-SwitchListController.$inject = ['$mdToast',     'Switches'];
+SwitchListController.$inject = ['$mdToast', 'Switches'];

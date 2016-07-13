@@ -56,7 +56,7 @@ export class SectionListController {
         let switchesArray = [];
         section.switches.forEach((sw) => {
              switchesArray.push({
-                 id: parseInt(sw.id),
+                 id: parseInt(sw.deviceId),
                  type: sw.type,
                  state: parseInt(section.state ? (sw.on ? 1 : 0) : (sw.off ? 1 : 0))
              });
@@ -124,7 +124,7 @@ export class SectionListController {
 
     deleteSwitch(selectedSwitch, selectedSection) {
         let confirmDialog = this.$mdDialog.confirm()
-            .title(`Would you like to delete your switch ${selectedSwitch.id} from ${selectedSection.name}?`)
+            .title(`Would you like to delete your switch ${selectedSwitch.name} from ${selectedSection.name}?`)
             .ok('Yes')
             .cancel('Ups...');
 

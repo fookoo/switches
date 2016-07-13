@@ -31,8 +31,8 @@
                         <md-input-container class="md-block">
                             <label>Add switch</label>
                             <md-select ng-model="selectedSwitch" ng-change="SectionListCtrl.addNewSwitch(section, selectedSwitch)">
-                                <md-option ng-repeat="switch in section.availableSwitches | orderBy: 'id' track by $index" ng-value="switch">
-                                    <md-icon md-font-icon="power">power</md-icon>({{ switch.id }}) {{ switch.name }}
+                                <md-option ng-repeat="switch in section.availableSwitches | orderBy: 'deviceId' track by $index" ng-value="switch">
+                                    <md-icon md-font-icon="power">power</md-icon>({{ switch.deviceId }}) {{ switch.name }}
                                 </md-option>
                             </md-select>
                         </md-input-container>
@@ -52,7 +52,7 @@
 
 
 
-<div style="display:none;" layout="row" layout-align="center center">
+<div layout="row" layout-align="center center">
     <div>
         <md-button class="md-raised md-primary" ng-click="SectionListCtrl.addNewSection()" aria-label="Add new section">Add new section</md-button>
     </div>

@@ -44,11 +44,11 @@ export class SectionsService {
 
         this.sections.forEach((section) => {
             section.switches.forEach((switchItem) => {
-                switchItem.name = this.Switches.getNameById(switchItem.id);
+                switchItem.name = this.Switches.getNameById(switchItem.deviceId);
             });
 
             section.availableSwitches.forEach((avaSwitch) => {
-                avaSwitch.name = this.Switches.getNameById(avaSwitch.id);
+                avaSwitch.name = this.Switches.getNameById(avaSwitch.deviceId);
             });
         });
         
@@ -56,14 +56,16 @@ export class SectionsService {
     }
 
     addSwitch(selectedSection, selectedSwitch) {
-        this.sections.forEach((section) => {
-            if (section.id === selectedSection.id) {
+        this.sections
+            .filter((section) => section.id === selectedSection.id)
+            .map((section) => {
+                selectedSwitch.id = this.Common.generateId();
                 selectedSwitch.type = 'switch';
                 selectedSwitch.on = false;
                 selectedSwitch.off = false;
+
                 section.switches.push(selectedSwitch);
-            }
-        });
+            });
 
         this.sync();
     }
