@@ -122,7 +122,7 @@ module.exports = function (grunt) {
         'http-server': {
             dev: {
                 root: 'www/',
-                // host: '192.168.1.105',
+                // host: '192.168.1.14',
                 port: 8282,
                 showDir: true,
                 autoIndex: true,

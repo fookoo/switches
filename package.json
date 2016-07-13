@@ -1,6 +1,6 @@
 {
   "name": "switches",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "JS Lib for relay control by Raspberry PI",
   "devDependencies": {
     "babel": "^6.5.2",

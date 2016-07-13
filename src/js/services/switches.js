@@ -5,7 +5,7 @@ export class SwitchesService {
         this.$q = $q;
         this.$http = $http;
         
-        this.backendUrl = 'http://fuku.noip.me:8080';
+        this.backendUrl = 'http://192.168.1.10:8080';
     }
 
     /**
