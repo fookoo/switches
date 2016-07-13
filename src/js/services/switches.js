@@ -19,10 +19,11 @@ export class SwitchesService {
             .get(`${this.backendUrl}/relays`)
             .then((relays) => {
                 relays.data.forEach((switchElement) => {
+                    switchElement.deviceId = switchElement.id;
                     switchElement.icon = 'swap_horiz';
-                    switchElement.name = this.getNameById(switchElement.id);
+                    switchElement.name = this.getNameById(switchElement.deviceId);
                     switchElement.type = 'direct';
-                    switchElement.state = switchElement.state === 1;
+                    switchElement.state = switchElement.state === "1";
                 });
                 console.info (relays.data);
                 p.resolve(relays.data);
