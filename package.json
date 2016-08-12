@@ -1,6 +1,6 @@
 {
   "name": "switches",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Angular App for relay control by Raspberry PI",
   "devDependencies": {
     "babel": "^6.5.2",
