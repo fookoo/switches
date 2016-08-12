@@ -2,8 +2,6 @@ export function routerConfig($stateProvider, $urlRouterProvider, $compileProvide
     'ngInject';
 
     $compileProvider.debugInfoEnabled(false);
-    $compileProvider.commentDirectivesEnabled(false);
-    $compileProvider.cssClassDirectivesEnabled(false);
 
     $stateProvider
         .state('sections', {
