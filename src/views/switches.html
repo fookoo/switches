@@ -1,4 +1,42 @@
-<switch ng-repeat="switch in SwitchListCtrl.switches" device="switch"></switch>
-<loader ng-show="SwitchListCtrl.loader">
-    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-</loader>
+<div layout="column" layout-fill>
+    <md-toolbar ng-cloak>
+        <div class="md-toolbar-tools">
+            <md-menu>
+                <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                    <md-icon md-font-icon="menu">menu</md-icon>
+                </md-button>
+                <md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button ui-sref="sections">
+                            <md-icon md-font-icon="assignment" md-menu-align-target>assignment</md-icon>
+                            Sections
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ui-sref="switches">
+                            <md-icon md-font-icon="power">power</md-icon>
+                            Switches
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="SectionListCtrl.lockVieW()">
+                            <md-icon md-font-icon="lock">lock</md-icon>
+                            Disable edit mode
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+            <span>Automation PRO</span>
+            <span flex></span>
+
+        </div>
+    </md-toolbar>
+
+    <md-content flex>
+        <switch ng-repeat="switch in SwitchListCtrl.switches" device="switch"></switch>
+        <loader ng-show="SwitchListCtrl.loader">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </loader>
+    </md-content>
+</div>
+

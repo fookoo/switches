@@ -9,6 +9,11 @@ export class SectionListController {
         this.Sections = Sections;
 
         this.sections = Sections.getSections();
+        Switches.getSwitches().then((switches) => {
+            this.availableSwitches = switches;
+        });
+
+        this.locked = Boolean(window.localStorage.getItem('e30.switches.locked') || false);
     }
 
     /**
@@ -82,9 +87,6 @@ export class SectionListController {
             .then((newSectionName) => {
                 this.Sections
                     .addSection(newSectionName)
-                    .then((sections) => {
-                        this.sections = sections
-                    });
             });
     }
 
@@ -134,6 +136,21 @@ export class SectionListController {
                 this.Sections.removeSwitch(selectedSection, selectedSwitch);
                 this.sync();
             });
+    }
+
+    action(section) {
+        if (this.locked) {
+            section.state = !section.state;
+            this.toggle(section);
+        } else {
+            section.showDetails = !section.showDetails;
+            this.sync();
+        }
+    }
+
+    lockView() {
+        this.locked = !this.locked;
+        window.localStorage.setItem('e30.switches.locked', true);
     }
 
     /**

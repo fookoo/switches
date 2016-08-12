@@ -13,30 +13,15 @@ export class SectionsService {
     }
 
     addSection(sectionName) {
-        let p = this.$q.defer();
+        this.sections.push({
+            id: this.Common.generateId(),
+            name: sectionName,
+            state: false,
+            switches: [],
+            showDetails: false
+        });
 
-        this.Switches
-            .getSwitches()
-            .then((listOfSwitches) => {
-                this.sections.push({
-                    id: this.Common.generateId(),
-                    name: sectionName,
-                    state: false,
-                    switches: [],
-                    availableSwitches: listOfSwitches,
-                    showDetails: false
-                });
-
-                this.sync(this.sections);
-
-                p.resolve(this.sections);
-            }, (error) => {
-                console.warn(error);
-
-                p.reject(error);
-            });
-
-        return p.promise;
+        this.sync(this.sections);
     }
     
     getSections() {
@@ -45,10 +30,6 @@ export class SectionsService {
         this.sections.forEach((section) => {
             section.switches.forEach((switchItem) => {
                 switchItem.name = this.Switches.getNameById(switchItem.deviceId);
-            });
-
-            section.availableSwitches.forEach((avaSwitch) => {
-                avaSwitch.name = this.Switches.getNameById(avaSwitch.deviceId);
             });
         });
         

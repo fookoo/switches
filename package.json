@@ -1,7 +1,7 @@
 {
   "name": "switches",
-  "version": "1.1.3",
-  "description": "JS Lib for relay control by Raspberry PI",
+  "version": "1.1.5",
+  "description": "Angular App for relay control by Raspberry PI",
   "devDependencies": {
     "babel": "^6.5.2",
     "babel-preset-es2015": "^6.9.0",
